@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #daa9c1; /* Petite Orchid */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50; /* Simple Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Page</h1>
+    <form id="loginForm">
+        <input type="text" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        var loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var emailInput = document.getElementById("email");
+            var passwordInput = document.getElementById("password");
+
+            var email = emailInput.value;
+            var password = passwordInput.value;
+
+            // Perform authentication here (e.g., check against a database)
+            // Replace the condition below with your authentication logic
+            if (email === "a_singh2@ph.iitr.ac.in" && password === "5922") {
+                window.location.href = "URLshortener.html";
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+
+            // Clear the input fields
+            emailInput.value = "";
+            passwordInput.value = "";
+        });
+    </script>
+</body>
+</html>
