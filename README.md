@@ -6,6 +6,9 @@ When a user inputs a URL, it can shorten it to whatever keywords it wants it to 
 # Search Optimization
 Further, we see a search optimization feature. If the user wants to search for any specific URL, it can do so by either typing some common keywords present in the original or shortened URL or it can also write the note associated to it which is related to the content present on that URL's webpage
 
+# Optional Task - Implemented authentication by creating a login page
+This login page will be the verifying page that will allow only registerd users to enter the main webpage.
+
 # How to run the project
 As I have not hosted the project, it has to be run dircetly using the HTML code of the project webpage. There will be a HTML file attached in the repository file.
 
