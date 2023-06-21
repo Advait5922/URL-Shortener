@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #daa9c1; /* Petite Orchid */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50; /* Simple Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #searchInput {
+            margin-bottom: 10px;
+        }
+
+        #searchResult {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <form id="urlForm">
+        <input type="text" id="originalUrl" placeholder="Enter URL" required>
+        <input type="text" id="shortUrl" placeholder="Enter Short Name" required>
+        <button type="submit">Shorten</button>
+    </form>
+
+    <h2>Shortened URLs:</h2>
+    <ul id="urlList">
+        <!-- Existing shortened URLs will be dynamically added here -->
+    </ul>
+
+    <h2>Search URL:</h2>
+    <input type="text" id="searchInput" placeholder="Enter a note or keyword">
+    <button onclick="searchURL()">Search</button>
+    <p id="searchResult"></p>
+
+    <script>
+        var urls = [
+            { note: "YouTube", url: "https://www.youtube.com/" },
+            { note: "Wikipedia", url: "https://www.wikipedia.org/" },
+            { note: "URL Shortener Meeting Recording", url: "https://iitracin.sharepoint.com/sites/ACMOSNetworksDiscussions/_layouts/15/stream.aspx?id=%2Fsites%2FACMOSNetworksDiscussions%2FShared%20Documents%2FGeneral%2FRecordings%2FMeeting%20in%20%5FGeneral%5F%2D20230607%5F180025%2DMeeting%20Recording%2Emp4" },
+            { note: "Coding Ninjas Contest", url: "https://www.codingninjas.com/codestudio/events/codekaze-june-23-india-s-biggest-hiring-challenge?utm_source=Growth-CS&utm_medium=RJ&utm_campaign=diffsource_hiteshrao_10june" },
+            { note: "GeeksForGeeeks", url: "https://practice.geeksforgeeks.org/courses?source=google&medium=cpc&device=c&keyword=geeksforgeeks&matchtype=b&campaignid=20039445781&adgroup=147845288105&gad=1&gclid=CjwKCAjws7WkBhBFEiwAIi16897bmPCzF497yRhuSKopFsddlx2O-og66OwbzJND0FIku0grdHZEfBoC3cYQAvD_BwE" },
+            { note: "Tutorials Point", url: "https://www.tutorialspoint.com/data_structures_algorithms/index.htm" },
+            { note: "JavaTpoint", url: "https://www.javatpoint.com/" },
+            { note: "TakeUForward", url: "https://takeuforward.org/" },
+            { note: "Eminem", url: "https://en.wikipedia.org/wiki/Eminem" },
+            { note: "Chat GPT", url: "https://chat.openai.com/" },
+            { note: "Acad Portal", url: "acad.iitr.ac.in/Student/ResponseFormList.aspx" }
+        ];
+
+        var urlForm = document.getElementById("urlForm");
+        var urlList = document.getElementById("urlList");
+
+        urlForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var originalUrlInput = document.getElementById("originalUrl");
+            var shortUrlInput = document.getElementById("shortUrl");
+
+            var originalUrl = originalUrlInput.value;
+            var shortUrl = shortUrlInput.value;
+
+            var listItem = document.createElement("li");
+            listItem.innerHTML = "<a href='" + originalUrl + "' target='_blank'>" + shortUrl + "</a>";
+            urlList.appendChild(listItem);
+
+            originalUrlInput.value = "";
+            shortUrlInput.value = "";
+        });
+
+        function searchURL() {
+            var searchInput = document.getElementById("searchInput");
+            var keyword = searchInput.value.toLowerCase();
+            var searchResult = document.getElementById("searchResult");
+
+            var foundURL = urls.find(function (url) {
+                return url.note.toLowerCase().includes(keyword) || url.url.toLowerCase().includes(keyword);
+            });
+
+            if (foundURL) {
+                searchResult.innerHTML = "<a href='" + foundURL.url + "' target='_blank'>" + foundURL.note + "</a>";
+            } else {
+                searchResult.innerHTML = "No matching URL found.";
+            }
+
+            searchInput.value = "";
+        }
+    </script>
+</body>
+</html>
